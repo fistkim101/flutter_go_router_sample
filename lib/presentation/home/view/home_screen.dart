@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
-import '../../../domain/domain.dart';
 import '../../../application/application.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -9,12 +8,6 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final List<ProductModel> products = [
-      ProductModel(email: 'fistkim1@gmail.com', name: 'name1'),
-      ProductModel(email: 'fistkim2@gmail.com', name: 'name2'),
-      ProductModel(email: 'fistkim3@gmail.com', name: 'name3'),
-    ];
-
     return Scaffold(
         appBar: AppBar(
           title: const Text('Home'),
@@ -26,7 +19,7 @@ class HomeScreen extends StatelessWidget {
             children: [
               ElevatedButton(
                 onPressed: () {
-                  context.pushNamed(RouteName.productList, extra: products);
+                  context.pushNamed(RouteName.productList);
                 },
                 child: Text('ProductList'),
               ),

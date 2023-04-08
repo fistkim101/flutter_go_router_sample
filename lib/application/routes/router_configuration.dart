@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../domain/domain.dart';
 import '../../presentation/presentation.dart';
@@ -14,15 +15,16 @@ class RouterConfiguration {
         name: RouteName.home,
         path: '/${RoutePath.home}',
         builder: (BuildContext context, GoRouterState state) =>
-            const HomeScreen(),
+        const HomeScreen(),
         routes: [
           GoRoute(
             name: RouteName.productList,
             path: RoutePath.productList,
             builder: (context, state) {
-              final List<ProductModel> products =
-                  state.extra as List<ProductModel>;
-              return ProductListScreen(products: products);
+              return BlocProvider(
+                create: (context) => ProductListBloc(),
+                child: ProductListScreen(),
+              );
             },
             routes: [
               GoRoute(
